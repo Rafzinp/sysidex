@@ -67,19 +67,43 @@ window.SX = (function () {
   // "View all" opens the full list page.
   var LOGOS = {
     clients: [
-      { name: 'Saraya Corniche Hotel', file: 'partner-saraya.png' },
-      { name: 'Qatargas', file: 'partner-qatargas.png' },
-      { name: 'QatarEnergy', file: 'partner-qatarenergy.png' },
-      { name: 'Ministry of Education and Higher Education, State of Qatar', file: 'partner-moehe.png' },
-      { name: 'QAPCO — Qatar Petrochemical Company', file: 'partner-qapco.png' },
-      { name: 'Umm Al Houl Power', file: 'partner-ummalhoul.png' }
+      { name: 'Aljaber', file: 'client-aljaber.png' },
+      { name: 'Craig International', file: 'client-craig-international.png' },
+      { name: 'Elegancia Facilities Management', file: 'client-elegancia.png' },
+      { name: 'InterContinental Hotels & Resorts', file: 'client-intercontinental.png' },
+      { name: 'Ministry of Education and Higher Education, State of Qatar', file: 'client-moehe.png' },
+      { name: 'QAPCO — Qatar Petrochemical Company', file: 'client-qapco.png' },
+      { name: 'Qatar Foundation', file: 'client-qatar-foundation.png' },
+      { name: 'Qatar University', file: 'client-qatar-university.png' },
+      { name: 'QatarEnergy', file: 'client-qatarenergy.png' },
+      { name: 'Qatargas', file: 'client-qatargas.png' },
+      { name: 'Saraya Corniche Hotel', file: 'client-saraya-corniche.png' },
+      { name: 'St. Regis', file: 'client-st-regis.png' },
+      { name: 'Supreme Committee for Delivery & Legacy', file: 'client-supreme-committee.png' },
+      { name: 'Umm Al Houl Power', file: 'client-umm-al-houl-power.png' },
+      { name: 'Wyndham Hotels & Resorts', file: 'client-wyndham.png' }
     ],
     partners: [
-      { name: 'OSRAM', file: 'partner-osram.png' },
-      { name: 'Tridonic', file: 'partner-tridonic.png' },
-      { name: 'ABB', file: 'partner-abb.png' },
-      { name: 'Philips', file: 'partner-philips.png' },
-      { name: 'Schneider Electric', file: 'partner-schneider.png' }
+      { name: 'Yuasa', file: 'partner-logo-yuasa.png' },
+      { name: 'Uvex', file: 'partner-logo-uvex.png' },
+      { name: 'USAG', file: 'partner-logo-usag.png' },
+      { name: 'Tungsram', file: 'partner-logo-tungsram.png' },
+      { name: 'Tridonic', file: 'partner-logo-tridonic.png' },
+      { name: 'Total', file: 'partner-logo-total.png' },
+      { name: 'Thorn', file: 'partner-logo-thorn.png' },
+      { name: 'Stanley', file: 'partner-logo-stanley.png' },
+      { name: 'Siemens', file: 'partner-logo-siemens.png' },
+      { name: 'Schneider Electric', file: 'partner-logo-schneider-electric.png' },
+      { name: 'Scame', file: 'partner-logo-scame.png' },
+      { name: 'RS', file: 'partner-logo-rs.png' },
+      { name: 'RPG', file: 'partner-logo-rpg.png' },
+      { name: 'Ridgid', file: 'partner-logo-ridgid.png' },
+      { name: 'Raytec', file: 'partner-logo-raytec.png' },
+      { name: 'Raychem', file: 'partner-logo-raychem.png' },
+      { name: 'Prestar', file: 'partner-logo-prestar.png' },
+      { name: 'Power Sonic', file: 'partner-logo-power-sonic.png' },
+      { name: 'Phoenix Contact', file: 'partner-logo-phoenix-contact.png' },
+      { name: 'Philips', file: 'partner-logo-philips.png' }
     ]
   };
 

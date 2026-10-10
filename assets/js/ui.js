@@ -309,12 +309,12 @@
     var limit = parseInt(el.getAttribute('data-limit') || '8', 10);
     var list = (SX.LOGOS[kind] || []).slice(0, limit);
     if (!list.length) return;
-    var tileW = 176, gap = 16;                       // w-44 tiles + 1rem gap
+    var tileW = 192, gap = 16;                       // w-48 tiles + 1rem gap
     var groupW = list.length * (tileW + gap);
     var k = Math.max(2, Math.ceil((Math.max(el.offsetWidth, window.innerWidth) * 2) / groupW));
     var group = function (hidden) {
       return '<ul class="sx-marquee-group"' + (hidden ? ' aria-hidden="true"' : '') + '>' + list.map(function (l) {
-        return '<li class="' + TILE + ' w-44 h-24 p-4">' + logoImg(l, 'max-h-14 max-w-full') + '</li>';
+        return '<li class="' + TILE + ' w-48 h-28 p-2">' + logoImg(l, 'max-h-24 max-w-full') + '</li>';
       }).join('') + '</ul>';
     };
     var groups = '';
@@ -333,7 +333,7 @@
       var shown = list.filter(function (l) { return !q || l.name.toLowerCase().indexOf(q) !== -1; });
       if (countEl) countEl.textContent = shown.length + (shown.length === 1 ? ' company' : ' companies');
       setHTML(el, shown.length ? shown.map(function (l) {
-        return '<li class="' + TILE + ' flex-col gap-4 p-6 min-h-[11rem]">' + logoImg(l, 'h-16 max-w-full') +
+        return '<li class="' + TILE + ' flex-col gap-2 p-4 min-h-[12rem]">' + logoImg(l, 'max-h-24 max-w-full') +
           '<span class="text-xs plex text-faint text-center leading-snug">' + esc(l.name) + '</span></li>';
       }).join('') : '<li class="col-span-full rounded-card border border-bd bg-warm3 p-10 text-center text-body">No companies match this search.</li>');
     }

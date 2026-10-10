@@ -21,9 +21,7 @@
   .sx-marquee-group[aria-hidden="true"] { display: none; }
 }
 
-/* Logo tile: same size in the marquee and on the full list pages. */
-.sx-logo img { filter: grayscale(1); opacity: .75; transition: filter .2s, opacity .2s; }
-.sx-logo:hover img, .sx-logo:focus-within img { filter: none; opacity: 1; }
+/* Logo tile: same size in the marquee and on the full list pages. Logos always show in full colour. */
 
 /* ---------- Cart / inquiry drawer (Figma 1455:5952, 1455:6186, 1455:6401) ---------- */
 html.sx-lock { overflow: hidden; }
@@ -75,6 +73,17 @@ html.sx-lock { overflow: hidden; }
   .sx-hero-in .sx-cta { margin-top: clamp(16px, 3.5vh, 40px); }
 }
 @media (min-width: 1200px) { .sx-hero-in.sx-hero-in { --sx-chrome: 332px; } }
+
+/* Home hero below 768px: centred text, full-width CTAs, no stray left rule on the stats' second row */
+@media (max-width: 767px) {
+  .sx-hero-in { text-align: center; }
+  .sx-hero-in > p.mb-6 { justify-content: center; }
+  .sx-hero-in .sx-h, .sx-hero-in .sx-lead { margin-left: auto; margin-right: auto; }
+  .sx-hero-in .sx-cta { flex-direction: column; }
+  .sx-hero-in .sx-cta > a { width: 100%; justify-content: center; }
+  .sx-stats { text-align: center; }
+  .sx-stats > div:nth-child(odd) { border-left-width: 0 !important; }
+}
 
 /* ---------- Responsive menu (same behaviour as bushtorm.com) ----------
    Below 1200px: hamburger (26x26, three 2px bars) opens a left slide-in panel, max 320px / 90% wide,
@@ -130,3 +139,9 @@ html.sx-lock { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .sx-mm, .sx-mm.is-open, .sx-mm-backdrop, .sx-mm-backdrop.is-open { transition: none; }
 }
+
+/* A long unbroken search term (or product id) must wrap instead of pushing the page sideways */
+#listing-title, #listing-sub, #crumb-current, #product-grid p { overflow-wrap: anywhere; }
+
+/* Footer link grid: tighter gutter on very narrow phones so the three columns fit at 320px */
+@media (max-width: 359px) { footer ul.grid-cols-3 { column-gap: 1rem; } }

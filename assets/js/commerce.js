@@ -35,11 +35,26 @@
     catch (e) { var m = {}; return { getItem: function (k) { return k in m ? m[k] : null; }, setItem: function (k, v) { m[k] = String(v); } }; }
   }
   var LS = safeStore('localStorage'), SS = safeStore('sessionStorage');
-  function read(store, key, fallback) { try { var v = store.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; } }
+  /* Stored JSON is untrusted: a value of the wrong type (null, an object where an array is expected, ...) falls back. */
+  function read(store, key, fallback) {
+    try {
+      var v = store.getItem(key); if (!v) return fallback;
+      var p = JSON.parse(v);
+      return (p === null || typeof p !== typeof fallback || Array.isArray(p) !== Array.isArray(fallback)) ? fallback : p;
+    } catch (e) { return fallback; }
+  }
   function write(store, key, value) { try { store.setItem(key, JSON.stringify(value)); } catch (e) { /* storage full: keep working in memory */ } }
 
   /* ---------- cart state ---------- */
-  var cart = read(LS, K_CART, []).filter(function (l) { return byId(l.id) && l.qty > 0; });
+  /* Whole quantities clamped to 1..MAX, known products only, one line per product. */
+  function loadCart() {
+    return read(LS, K_CART, []).reduce(function (out, l) {
+      var qty = l && Math.floor(Number(l.qty));
+      if (l && byId(l.id) && qty > 0 && !out.some(function (o) { return o.id === l.id; })) out.push({ id: l.id, qty: Math.min(qty, MAX) });
+      return out;
+    }, []);
+  }
+  var cart = loadCart();
 
   function saveCart() { write(LS, K_CART, cart); refreshHeader(true); }
   function count() { return cart.reduce(function (n, l) { return n + l.qty; }, 0); }
@@ -553,7 +568,7 @@
     window.addEventListener('hashchange', function () { if (location.hash === '#cart') openDrawer('cart'); });
     window.addEventListener('storage', function (e) {
       if (e.key !== K_CART) return;
-      cart = read(LS, K_CART, []);
+      cart = loadCart();
       refreshHeader(false);
       if (drawerOpen && view === 'cart') renderCart();
     });
