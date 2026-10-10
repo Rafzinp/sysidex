@@ -151,3 +151,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   outline: 3px solid #2b3990 !important; outline-offset: 2px; box-shadow: 0 0 0 2px #fff;
 }
 [role="search"] input:focus-visible { outline: none !important; box-shadow: none; } /* the search bar already rings itself */
+
+/* Category bar: underline follows the current page (set by menu.js) */
+.sx-cat-tab[aria-current="page"] { color: #2b3990; border-bottom-color: #2b3990; }

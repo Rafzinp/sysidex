@@ -111,3 +111,19 @@
     if (p === here || (!isIndex && p.length > 1 && here.indexOf(p + '/') === 0)) a.setAttribute('aria-current', 'page');
   });
 })();
+
+/* Category bar: mark the tab for the current page (a product page marks its product's category). */
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.sx-cat-tab'));
+  if (!tabs.length) return;
+  var page = location.pathname.split('/').pop() || 'index.html';
+  if (page === 'product-detail.html' && window.SX) {
+    var id = new URLSearchParams(location.search).get('id') || 'uti-tape';
+    var p = SX.PRODUCTS.filter(function (x) { return x.id === id; })[0];
+    page = p && SX.CATS[p.cat] ? SX.CATS[p.cat].page : 'products.html';
+  }
+  tabs.forEach(function (a) {
+    if (a.getAttribute('href') === page) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
+})();
