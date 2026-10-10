@@ -134,9 +134,11 @@
     var tone = opts.tone || 'ok';
     var el = document.createElement('div');
     el.className = 'sx-toast flex items-start gap-3 bg-[#1b2a4a] text-white rounded-card shadow-card px-4 py-3 text-sm';
-    el.setAttribute('role', tone === 'ok' ? 'status' : 'alert');
+    el.setAttribute('role', tone === 'error' ? 'alert' : 'status');
     var icon = tone === 'ok'
       ? '<span class="mt-0.5 w-5 h-5 shrink-0 rounded-full bg-[#10b981] flex items-center justify-center text-[11px] font-bold" aria-hidden="true">✓</span>'
+      : tone === 'info'
+      ? '<span class="mt-0.5 w-5 h-5 shrink-0 rounded-full bg-[#4f63d2] flex items-center justify-center text-[11px] font-bold" aria-hidden="true">i</span>'
       : '<span class="mt-0.5 w-5 h-5 shrink-0 rounded-full bg-orange flex items-center justify-center text-[11px] font-bold" aria-hidden="true">!</span>';
     setHTML(el, icon + '<div class="flex-1 min-w-0"><p class="font-bold leading-snug">' + esc(opts.title) + '</p>' +
       (opts.detail ? '<p class="text-white/80 text-xs mt-0.5 leading-snug">' + esc(opts.detail) + '</p>' : '') + '</div>' +
@@ -557,8 +559,46 @@
     }
   }
 
+  /* ---------- placeholder links, share buttons, demo forms ---------- */
+  function initPageActions() {
+    // Links whose destination doesn't exist yet explain themselves instead of jumping to the top.
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-sx-soon]');
+      if (!a) return;
+      e.preventDefault();
+      toast({ tone: 'info', title: a.getAttribute('data-sx-soon') || 'Coming soon', detail: 'This page isn’t live in the preview yet.' });
+    });
+
+    var url = encodeURIComponent(location.href), title = encodeURIComponent(document.title);
+    var shares = {
+      linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + url,
+      x: 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
+      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url
+    };
+    $$('[data-sx-share]').forEach(function (a) {
+      var kind = a.getAttribute('data-sx-share');
+      if (shares[kind]) { a.href = shares[kind]; a.target = '_blank'; a.rel = 'noopener'; return; }
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var done = function () { toast({ title: 'Link copied' }); };
+        if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, function () { toast({ tone: 'error', title: 'Couldn’t copy the link', detail: location.href }); });
+        else toast({ tone: 'info', title: 'Copy this link', detail: location.href });
+      });
+    });
+
+    $$('form[data-sx-demo]').forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        form.reset();
+        toast({ title: form.getAttribute('data-sx-demo'), detail: 'Preview only: nothing was sent.' });
+      });
+    });
+  }
+
   /* ---------- boot ---------- */
   function boot() {
+    initPageActions();
     ensureRoot();
     refreshHeader(false);
     initDetail();

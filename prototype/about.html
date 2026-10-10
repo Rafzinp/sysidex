@@ -16,7 +16,7 @@ tailwind.config = {
     extend: {
       screens: { xl: '1200px' },   // hamburger menu below 1200px (same breakpoint as bushtorm.com)
       colors: {
-        blue: '#2b3990', indigo: '#10207a', orange: '#f37021', red: '#bb0017', teal: '#0d9488',
+        blue: '#2b3990', indigo: '#10207a', orange: '#f37021', red: '#bb0017', teal: '#0f766e',
         ink: '#1c1b1b', body: '#454652', faint: '#666b78',
         bd: '#e0e0e0', bdlight: '#c6c5d3',
         warm1: '#f6f3f2', warm2: '#fcf9f8', warm3: '#f7f8fa',
@@ -85,7 +85,7 @@ tailwind.config = {
         <span data-sx-cart-badge class="hidden sm:hidden absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-red text-white text-[10px] font-bold inline-flex items-center justify-center">0</span>
         <span data-sx-cart-label class="hidden sm:inline font-bold text-blue">0 Items</span>
       </button>
-      <a href="#login" class="hidden xl:inline border-l border-bd pl-6 font-bold text-sm text-blue hover:underline">Login / Register</a>
+      <a href="#login" data-sx-soon="Customer accounts are coming soon" class="hidden xl:inline border-l border-bd pl-6 font-bold text-sm text-blue hover:underline">Login / Register</a>
       <button type="button" data-sx-menu-open aria-haspopup="dialog" aria-controls="sx-menu" aria-expanded="false" aria-label="Open menu" class="xl:hidden shrink-0"><span class="sx-burger" aria-hidden="true"><span></span></span></button>
     </div>
   </div>
@@ -108,7 +108,7 @@ tailwind.config = {
 <main id="main">
   <section class="relative overflow-hidden bg-gradient-to-br from-blue to-indigo">
     <div class="relative max-w-[1440px] mx-auto px-6 md:px-16 py-24">
-      <p class="flex items-center gap-2 text-xs plex uppercase tracking-[0.14em] text-orange mb-6">
+      <p class="flex items-center gap-2 text-xs plex uppercase tracking-[0.14em] text-[#ff9f66] mb-6">
         <span class="w-2 h-2 rounded-full bg-orange"></span> About Sysidex
       </p>
       <h1 class="text-white font-bold text-[40px] md:text-[56px] leading-[1.05] tracking-tight max-w-2xl">Engineering Excellence for Industrial Qatar</h1>
@@ -277,16 +277,16 @@ tailwind.config = {
         <div class="flex items-center justify-between">
           <p class="text-[11px] plex uppercase tracking-wide text-[#c3bfaf]">Social</p>
           <div class="flex gap-4">
-            <a href="#" class="text-sm text-[#f7f5ee] hover:text-red border-b border-transparent hover:border-red transition-colors">Instagram</a>
-            <a href="#" class="text-sm text-[#f7f5ee] hover:text-red border-b border-transparent hover:border-red transition-colors">LinkedIn</a>
-            <a href="#" class="text-sm text-[#f7f5ee] hover:text-red border-b border-transparent hover:border-red transition-colors">Facebook</a>
+            <a href="#" data-sx-soon="Our Instagram page link is coming soon" class="text-sm text-[#f7f5ee] hover:text-red border-b border-transparent hover:border-red transition-colors">Instagram</a>
+            <a href="#" data-sx-soon="Our LinkedIn page link is coming soon" class="text-sm text-[#f7f5ee] hover:text-red border-b border-transparent hover:border-red transition-colors">LinkedIn</a>
+            <a href="#" data-sx-soon="Our Facebook page link is coming soon" class="text-sm text-[#f7f5ee] hover:text-red border-b border-transparent hover:border-red transition-colors">Facebook</a>
           </div>
         </div>
       </div>
     </div>
     <div class="border-t border-white/10"></div>
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-6 text-sm">
-      <a href="#" class="hover:text-red">Privacy Policy</a>
+      <a href="#" data-sx-soon="Privacy Policy is coming soon" class="hover:text-red">Privacy Policy</a>
       <p class="text-[#c3bfaf] uppercase text-xs tracking-wide">&copy; 2024 Sysidex. All Rights Reserved.</p>
     </div>
   </div>

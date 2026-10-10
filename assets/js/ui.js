@@ -333,7 +333,7 @@
       var shown = list.filter(function (l) { return !q || l.name.toLowerCase().indexOf(q) !== -1; });
       if (countEl) countEl.textContent = shown.length + (shown.length === 1 ? ' company' : ' companies');
       setHTML(el, shown.length ? shown.map(function (l) {
-        return '<li class="' + TILE + ' flex-col gap-2 p-4 min-h-[12rem]">' + logoImg(l, 'max-h-24 max-w-full') +
+        return '<li class="' + TILE + ' flex-col gap-2 p-4 min-h-[12rem]">' + logoImg({ file: l.file, name: '' }, 'max-h-24 max-w-full') +
           '<span class="text-xs plex text-faint text-center leading-snug">' + esc(l.name) + '</span></li>';
       }).join('') : '<li class="col-span-full rounded-card border border-bd bg-warm3 p-10 text-center text-body">No companies match this search.</li>');
     }
